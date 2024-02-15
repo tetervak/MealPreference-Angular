@@ -15,7 +15,6 @@ export class InputComponent {
   form: FormGroup;
 
   constructor(private service: MealPreferenceService, private router: Router) {
-
     this.form = new FormGroup({
       userName: new FormControl("", [Validators.required, Validators.pattern(/\S/g)]),
       mealChoice: new FormControl(MealChoice.FISH)
@@ -25,10 +24,9 @@ export class InputComponent {
   protected readonly MealChoice = MealChoice;
 
   onSubmit(): void {
-    let userPreference: UserPreference = new UserPreference();
-    userPreference.userName = this.form.value.userName.trim();
-    userPreference.mealChoice = this.form.value.mealChoice;
-    this.service.submitUserPreference(userPreference);
+    this.service.submitUserPreference(
+      new UserPreference(this.form.value.userName.trim(), this.form.value.mealChoice)
+    );
     this.router.navigate(["/output"]);
   }
 }

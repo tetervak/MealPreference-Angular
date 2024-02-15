@@ -2,28 +2,37 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <p>
-    <label>Your Name: <input type="text" formControlName="userName"></label>
-    <span *ngIf="form.get('userName')?.invalid && form.get('userName')?.touched" class="error"> &larr; required</span>
+    <mat-form-field>
+      <mat-label>Your Name</mat-label>
+      <input matInput type="text" formControlName="userName">
+      <mat-error *ngIf="form.get('userName')?.invalid && form.get('userName')?.touched">Required</mat-error>
+    </mat-form-field>
   </p>
   <p>
-      <label><input type="radio"
-                    formControlName="mealChoice" [value]="MealChoice.CHICKEN"> Chicken</label><br>
-      <label><input type="radio"
-                    formControlName="mealChoice" [value]="MealChoice.FISH"> Fish</label><br>
-      <label><input type="radio"
-                    formControlName="mealChoice" [value]="MealChoice.VEGETARIAN"> Vegetarian</label>
+    <mat-radio-group formControlName="mealChoice">
+      <mat-radio-button [value]="MealChoice.CHICKEN">Chicken</mat-radio-button><br>
+      <mat-radio-button [value]="MealChoice.FISH">Fish</mat-radio-button><br>
+      <mat-radio-button [value]="MealChoice.VEGETARIAN">Vegetarian</mat-radio-button>
+    </mat-radio-group>
   </p>
   <p>
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
   </p>
 </form>
 
-<h3>You Entered</h3>
-<p>
-  Your Name: {{form.value['userName']}}<br>
-  Your Meal Choice: {{form.value['mealChoice']}}<br>
-  Input is valid: {{form.valid}}
-</p>
+<mat-card style="width: 20em">
+  <mat-card-header>
+    <mat-card-title>You Entered</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Your Name: {{form.value['userName']}}<br>
+      Your Meal Choice: {{form.value['mealChoice']}}<br>
+      Input is valid: {{form.valid}}
+    </p>
+  </mat-card-content>
+</mat-card>
+
 
 
 

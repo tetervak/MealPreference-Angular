@@ -8,6 +8,12 @@ import { OutputComponent } from './output/output.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatButton} from "@angular/material/button";
+import { MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -20,9 +26,16 @@ import {ReactiveFormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButton,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

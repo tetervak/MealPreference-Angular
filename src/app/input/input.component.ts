@@ -17,7 +17,8 @@ export class InputComponent {
   constructor(private service: MealPreferenceService, private router: Router) {
     this.form = new FormGroup({
       userName: new FormControl("", [Validators.required, Validators.pattern(/\S/g)]),
-      mealChoice: new FormControl(MealChoice.FISH)
+      mealChoice: new FormControl(MealChoice.FISH),
+      notSpicy: new FormControl(false)
     })
   }
 
@@ -25,7 +26,10 @@ export class InputComponent {
 
   onSubmit(): void {
     this.service.submitUserPreference(
-      new UserPreference(this.form.value.userName.trim(), this.form.value.mealChoice)
+      new UserPreference(
+        this.form.value.userName.trim(),
+        this.form.value.mealChoice,
+        this.form.value.notSpicy)
     );
     this.router.navigate(["/output"]);
   }

@@ -13,6 +13,7 @@
       <label><input type="radio"
                     formControlName="mealChoice" [value]="MealChoice.VEGETARIAN"> Vegetarian</label>
   </p>
+  <label><input type="checkbox" formControlName="notSpicy"> Not Spicy</label>
   <p>
     <button type="submit" [disabled]="form.invalid">Submit</button>
   </p>
@@ -22,6 +23,7 @@
 <p>
   Your Name: {{form.value['userName']}}<br>
   Your Meal Choice: {{form.value['mealChoice']}}<br>
+  Not Spicy: {{form.value['notSpicy']}}<br>
   Input is valid: {{form.valid}}
 </p>
 

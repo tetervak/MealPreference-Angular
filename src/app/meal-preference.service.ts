@@ -7,7 +7,7 @@ import {MealChoice} from "./meal-choice";
 })
 export class MealPreferenceService {
 
-  userPreference: UserPreference = new UserPreference('', MealChoice.FISH);
+  userPreference: UserPreference = new UserPreference('', MealChoice.FISH, false);
 
   submitUserPreference(userPreference: UserPreference): void {
     this.userPreference = userPreference;

@@ -13,6 +13,13 @@ footer {
   color: #546e7a;
 }
 
-footer .hart {
+.hart {
   color: #e91e63;
+  position: relative;
+  bottom: -5px;
+}
+
+mat-toolbar{
+  position: fixed;
+  bottom: 0;
 }

@@ -16,11 +16,14 @@
     </mat-radio-group>
   </p>
   <p>
-    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+    <mat-checkbox formControlName="notSpicy">Not Spicy</mat-checkbox>
+  </p>
+  <p>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit<mat-icon fontIcon="done"></mat-icon></button>
   </p>
 </form>
 
-<mat-card style="width: 20em">
+<mat-card style="width: 20em; margin-top: 3em">
   <mat-card-header>
     <mat-card-title>You Entered</mat-card-title>
   </mat-card-header>
@@ -28,6 +31,7 @@
     <p>
       Your Name: {{form.value['userName']}}<br>
       Your Meal Choice: {{form.value['mealChoice']}}<br>
+      Not Spicy: {{form.value['notSpicy']}}<br>
       Input is valid: {{form.valid}}
     </p>
   </mat-card-content>

@@ -2,30 +2,40 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <p>
-    <label>Your Name: <input type="text" formControlName="userName"></label>
-    @if(form.get('userName')?.invalid && form.get('userName')?.touched){
-      <span class="error"> &larr; required</span>
-    }
+    <mat-form-field>
+      <mat-label>Your Name</mat-label>
+      <input matInput type="text" formControlName="userName">
+      @if(form.get('userName')?.invalid && form.get('userName')?.touched){
+        <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
   </p>
   <p>
-    <label><input type="radio"
-                  formControlName="mealChoice" [value]="MealChoice.CHICKEN"> Chicken</label><br>
-    <label><input type="radio"
-                  formControlName="mealChoice" [value]="MealChoice.FISH"> Fish</label><br>
-    <label><input type="radio"
-                  formControlName="mealChoice" [value]="MealChoice.VEGETARIAN"> Vegetarian</label>
+    <mat-radio-group formControlName="mealChoice">
+      <mat-radio-button [value]="MealChoice.CHICKEN">Chicken</mat-radio-button><br>
+      <mat-radio-button [value]="MealChoice.FISH">Fish</mat-radio-button><br>
+      <mat-radio-button [value]="MealChoice.VEGETARIAN">Vegetarian</mat-radio-button>
+    </mat-radio-group>
   </p>
-  <label><input type="checkbox" formControlName="notSpicy"> Not Spicy</label>
   <p>
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <mat-checkbox formControlName="notSpicy">Not Spicy</mat-checkbox>
+  </p>
+  <p>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit<mat-icon fontIcon="done"></mat-icon></button>
   </p>
 </form>
 
-<h3>You Entered</h3>
-<p>
-  Your Name: {{form.value['userName']}}<br>
-  Your Meal Choice: {{form.value['mealChoice']}}<br>
-  Not Spicy: {{form.value['notSpicy']}}<br>
-  Input is valid: {{form.valid}}
-</p>
+<mat-card style="width: 20em; margin-top: 3em">
+  <mat-card-header>
+    <mat-card-title>You Entered</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Your Name: {{form.value['userName']}}<br>
+      Your Meal Choice: {{form.value['mealChoice']}}<br>
+      Not Spicy: {{form.value['notSpicy']}}<br>
+      Input is valid: {{form.valid}}
+    </p>
+  </mat-card-content>
+</mat-card>
 

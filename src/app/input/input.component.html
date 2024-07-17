@@ -4,7 +4,9 @@
   <p>
     <label>Your Name: <input type="text" name="userName" #name="ngModel"
                              [(ngModel)]="userPreference.userName" required pattern="(.|\s)*\S(.|\s)*"></label>
-    <span [hidden]="name.valid || name.untouched" class="error"> &larr; required</span>
+    @if(name.invalid && name.touched){
+      <span class="error"> &larr; required</span>
+    }
   </p>
   <p>
     <label><input type="radio" name="choice"

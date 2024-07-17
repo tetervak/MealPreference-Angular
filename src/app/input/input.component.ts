@@ -3,7 +3,7 @@ import {MealPreferenceService} from "../meal-preference.service";
 import {UserPreference} from "../user-preference";
 import {MealChoice} from "../meal-choice";
 import {Router} from "@angular/router";
-import {ReactiveFormsModule, FormControl, FormGroup, Validators, FormsModule} from "@angular/forms";
+import {FormsModule, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";

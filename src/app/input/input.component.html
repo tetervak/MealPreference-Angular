@@ -1,37 +1,31 @@
 <h2>Input</h2>
 
-<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <p>
-    <label>Your Name: <input type="text" name="userName" #name="ngModel"
-                             [(ngModel)]="userPreference.userName" required pattern="(.|\s)*\S(.|\s)*"></label>
-    @if(name.invalid && name.touched){
+    <label>Your Name: <input type="text" formControlName="userName"></label>
+    @if(form.get('userName')?.invalid && form.get('userName')?.touched){
       <span class="error"> &larr; required</span>
     }
   </p>
   <p>
-    <label><input type="radio" name="choice"
-                  [value]="MealChoice.CHICKEN"
-                  [(ngModel)]="userPreference.mealChoice"> Chicken</label><br>
-    <label><input type="radio" name="choice"
-                  [value]="MealChoice.FISH"
-                  [(ngModel)]="userPreference.mealChoice"> Fish</label><br>
-    <label><input type="radio" name="choice"
-                  [value]="MealChoice.VEGETARIAN"
-                  [(ngModel)]="userPreference.mealChoice"> Vegetarian</label>
+    <label><input type="radio"
+                  formControlName="mealChoice" [value]="MealChoice.CHICKEN"> Chicken</label><br>
+    <label><input type="radio"
+                  formControlName="mealChoice" [value]="MealChoice.FISH"> Fish</label><br>
+    <label><input type="radio"
+                  formControlName="mealChoice" [value]="MealChoice.VEGETARIAN"> Vegetarian</label>
   </p>
+  <label><input type="checkbox" formControlName="notSpicy"> Not Spicy</label>
   <p>
-    <label><input type="checkbox" name="notSpicy" [(ngModel)]="userPreference.notSpicy"> Not Spicy</label>
-  </p>
-  <p>
-    <button type="submit" [disabled]="myForm.form.invalid">Submit</button>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
   </p>
 </form>
 
 <h3>You Entered</h3>
 <p>
-  User Name: {{userPreference.userName}}<br>
-  User Meal Choice: {{userPreference.mealChoice}}<br>
-  Not Spicy: {{userPreference.notSpicy}}<br>
-  The Input is Valid: {{myForm.form.valid}}
+  Your Name: {{form.value['userName']}}<br>
+  Your Meal Choice: {{form.value['mealChoice']}}<br>
+  Not Spicy: {{form.value['notSpicy']}}<br>
+  Input is valid: {{form.valid}}
 </p>
 

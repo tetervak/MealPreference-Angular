@@ -1,27 +1,28 @@
 <h2>Input</h2>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
   <p>
     <mat-form-field>
       <mat-label>Your Name</mat-label>
-      <input matInput type="text" formControlName="userName">
-      @if(form.get('userName')?.invalid && form.get('userName')?.touched){
+      <input matInput type="text"  name="userName" #userName="ngModel"
+             [(ngModel)]="userPreference.userName" required pattern="(.|\s)*\S(.|\s)*">
+      @if(userName.invalid && userName.touched){
         <mat-error>Required</mat-error>
       }
     </mat-form-field>
   </p>
   <p>
-    <mat-radio-group formControlName="mealChoice">
+    <mat-radio-group name="choice" [(ngModel)]="userPreference.mealChoice">
       <mat-radio-button [value]="MealChoice.CHICKEN">Chicken</mat-radio-button><br>
       <mat-radio-button [value]="MealChoice.FISH">Fish</mat-radio-button><br>
       <mat-radio-button [value]="MealChoice.VEGETARIAN">Vegetarian</mat-radio-button>
     </mat-radio-group>
   </p>
   <p>
-    <mat-checkbox formControlName="notSpicy">Not Spicy</mat-checkbox>
+    <mat-checkbox  name="notSpicy" [(ngModel)]="userPreference.notSpicy">Not Spicy</mat-checkbox>
   </p>
   <p>
-    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit<mat-icon fontIcon="done"></mat-icon></button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Submit<mat-icon fontIcon="done"></mat-icon></button>
   </p>
 </form>
 
@@ -31,10 +32,10 @@
   </mat-card-header>
   <mat-card-content>
     <p>
-      Your Name: {{form.value['userName']}}<br>
-      Your Meal Choice: {{form.value['mealChoice']}}<br>
-      Not Spicy: {{form.value['notSpicy']}}<br>
-      Input is valid: {{form.valid}}
+      Your Name: {{userPreference['userName']}}<br>
+      Your Meal Choice: {{userPreference['mealChoice']}}<br>
+      Not Spicy: {{userPreference['notSpicy']}}<br>
+      Input is valid: {{myForm.valid}}
     </p>
   </mat-card-content>
 </mat-card>

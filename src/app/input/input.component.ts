@@ -3,7 +3,7 @@ import {MealPreferenceService} from "../meal-preference.service";
 import {UserPreference} from "../user-preference";
 import {MealChoice} from "../meal-choice";
 import {Router} from "@angular/router";
-import {ReactiveFormsModule, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ReactiveFormsModule, FormControl, FormGroup, Validators, FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -16,24 +16,20 @@ import {MatInputModule} from "@angular/material/input";
   selector: 'app-input',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
+    FormsModule,
     MatFormFieldModule, MatInputModule,
     MatCardModule, MatButtonModule,
     MatCheckboxModule,
-    MatRadioModule, MatIconModule,
+    MatRadioModule, MatIconModule
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.css'
 })
 export class InputComponent {
-  form: FormGroup;
+
+  userPreference: UserPreference = new UserPreference("", MealChoice.FISH, false);
 
   constructor(private service: MealPreferenceService, private router: Router) {
-    this.form = new FormGroup({
-      userName: new FormControl("", [Validators.required, Validators.pattern("(.|\\s)*\\S(.|\\s)*")]),
-      mealChoice: new FormControl(MealChoice.FISH),
-      notSpicy: new FormControl(false)
-    })
   }
 
   protected readonly MealChoice = MealChoice;
@@ -41,9 +37,9 @@ export class InputComponent {
   onSubmit(): void {
     this.service.submitUserPreference(
       new UserPreference(
-        this.form.value.userName.trim(),
-        this.form.value.mealChoice,
-        this.form.value.notSpicy)
+        this.userPreference.userName.trim(),
+        this.userPreference.mealChoice,
+        this.userPreference.notSpicy)
     );
     this.router.navigate(["/output"]);
   }

@@ -19,9 +19,9 @@ export class InputComponent {
 
   constructor(private service: MealPreferenceService, private router: Router) {
     this.form = new FormGroup({
-      userName: new FormControl("", [Validators.required, Validators.pattern("(.|\s)*\S(.|\s)*")]),
-      mealChoice: new FormControl(MealChoice.FISH),
-      notSpicy: new FormControl(false)
+      userName: new FormControl("", [Validators.required, Validators.pattern("(.|\\s)*\\S(.|\\s)*")]),
+      mealChoice: new FormControl(MealChoice.VEGETARIAN),
+      notSpicy: new FormControl(true)
     })
   }
 

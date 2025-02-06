@@ -11,5 +11,13 @@
 <p>
   <span class="label">Spicy Option:</span> {{userPreference.notSpicy?"Not Spicy":"Spicy"}}
 </p>
+<p>
+  <span class="label">Portion Size: </span>
+  @switch (userPreference.portionSize) {
+    @case(PortionSize.SMALL) { Small }
+    @case(PortionSize.MEDIUM) { Medium }
+    @case(PortionSize.LARGE) { Large }
+  }
+</p>
 <a routerLink="/input">Back to Input</a>
 

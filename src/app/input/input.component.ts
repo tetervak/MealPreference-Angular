@@ -4,6 +4,7 @@ import {UserPreference} from "../user-preference";
 import {MealChoice} from "../meal-choice";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {PortionSize} from "../portion-size";
 
 @Component({
   selector: 'app-input',
@@ -27,4 +28,6 @@ export class InputComponent {
     this.service.submitUserPreference(this.userPreference);
     this.router.navigate(["/output"]);
   }
+
+  protected readonly PortionSize = PortionSize;
 }

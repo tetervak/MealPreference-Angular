@@ -23,6 +23,14 @@
     <label><input type="checkbox" name="notSpicy" [(ngModel)]="userPreference.notSpicy"> Not Spicy</label>
   </p>
   <p>
+    <label>Portion Size: </label>
+    <select name="portion" [(ngModel)]="userPreference.portionSize">
+      <option [value]="PortionSize.SMALL">Small</option>
+      <option [value]="PortionSize.MEDIUM">Medium</option>
+      <option [value]="PortionSize.LARGE">Large</option>
+    </select>
+  </p>
+  <p>
     <button type="submit" [disabled]="myForm.form.invalid">Submit</button>
   </p>
 </form>
@@ -32,6 +40,7 @@
   User Name: {{userPreference.userName}}<br>
   User Meal Choice: {{userPreference.mealChoice}}<br>
   Not Spicy: {{userPreference.notSpicy}}<br>
+  Portion Size: {{userPreference.portionSize}}<br>
   The Input is Valid: {{myForm.form.valid}}
 </p>
 

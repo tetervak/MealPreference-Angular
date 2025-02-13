@@ -25,9 +25,9 @@
   <p>
     <label>Portion Size: </label>
     <select name="portion" [(ngModel)]="userPreference.portionSize">
-      <option [value]="PortionSize.SMALL">Small</option>
-      <option [value]="PortionSize.MEDIUM">Medium</option>
-      <option [value]="PortionSize.LARGE">Large</option>
+      <option [ngValue]="PortionSize.SMALL">Small</option>
+      <option [ngValue]="PortionSize.MEDIUM">Medium</option>
+      <option [ngValue]="PortionSize.LARGE">Large</option>
     </select>
   </p>
   <p>
@@ -40,7 +40,13 @@
   User Name: {{userPreference.userName}}<br>
   User Meal Choice: {{userPreference.mealChoice}}<br>
   Not Spicy: {{userPreference.notSpicy}}<br>
-  Portion Size: {{userPreference.portionSize}}<br>
+  Portion Size: {{userPreference.portionSize}},
+  @switch (userPreference.portionSize) {
+    @case(PortionSize.SMALL) { Small }
+    @case(PortionSize.MEDIUM) { Medium }
+    @case(PortionSize.LARGE) { Large }
+  }
+  <br>
   The Input is Valid: {{myForm.form.valid}}
 </p>
 

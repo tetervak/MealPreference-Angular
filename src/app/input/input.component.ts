@@ -19,9 +19,10 @@ export class InputComponent {
 
   constructor(private service: MealPreferenceService, private router: Router) {
     this.form = new FormGroup({
-      userName: new FormControl("", [Validators.required, Validators.pattern("(.|\\s)*\\S(.|\\s)*")]),
-      mealChoice: new FormControl(MealChoice.VEGETARIAN),
-      notSpicy: new FormControl(true)
+      userName: new FormControl<string>("", [Validators.required, Validators.pattern("(.|\\s)*\\S(.|\\s)*")]),
+      mealChoice: new FormControl<MealChoice>(MealChoice.FISH),
+      notSpicy: new FormControl<boolean>(false),
+      portionSize: new FormControl<number>(2)
     })
   }
 
@@ -32,7 +33,9 @@ export class InputComponent {
       new UserPreference(
         this.form.value.userName.trim(),
         this.form.value.mealChoice,
-        this.form.value.notSpicy)
+        this.form.value.notSpicy,
+        this.form.value.portionSize
+        )
     );
     this.router.navigate(["/output"]);
   }

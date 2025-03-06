@@ -4,30 +4,35 @@ import {UserPreference} from "../user-preference";
 import {MealChoice} from "../meal-choice";
 import {Router} from "@angular/router";
 import {FormsModule, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatRadioModule} from "@angular/material/radio";
-import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
+import {PortionSize} from "../portion-size";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatFormField} from "@angular/material/form-field";
+import {MatOption, MatSelect, MatLabel} from "@angular/material/select";
 
 @Component({
   selector: 'app-input',
   standalone: true,
   imports: [
     FormsModule,
-    MatFormFieldModule, MatInputModule,
+    MatInputModule,
     MatCardModule, MatButtonModule,
-    MatCheckboxModule,
-    MatRadioModule, MatIconModule
+    MatRadioModule, MatIconModule,
+    MatCheckbox,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatLabel
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.css'
 })
 export class InputComponent {
-
-  userPreference: UserPreference = new UserPreference("", MealChoice.FISH, false);
+  userPreference: UserPreference = new UserPreference();
 
   constructor(private service: MealPreferenceService, private router: Router) {
   }
@@ -35,12 +40,10 @@ export class InputComponent {
   protected readonly MealChoice = MealChoice;
 
   onSubmit(): void {
-    this.service.submitUserPreference(
-      new UserPreference(
-        this.userPreference.userName.trim(),
-        this.userPreference.mealChoice,
-        this.userPreference.notSpicy)
-    );
+    this.userPreference.userName = this.userPreference.userName.trim();
+    this.service.submitUserPreference(this.userPreference);
     this.router.navigate(["/output"]);
   }
+
+  protected readonly PortionSize = PortionSize;
 }

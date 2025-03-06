@@ -22,6 +22,16 @@
     <mat-checkbox  name="notSpicy" [(ngModel)]="userPreference.notSpicy">Not Spicy</mat-checkbox>
   </p>
   <p>
+    <mat-form-field>
+    <mat-label>Portion Size: </mat-label>
+    <mat-select name="portion" [(ngModel)]="userPreference.portionSize">
+      <mat-option [value]="PortionSize.SMALL">Small</mat-option>
+      <mat-option [value]="PortionSize.MEDIUM">Medium</mat-option>
+      <mat-option [value]="PortionSize.LARGE">Large</mat-option>
+    </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
     <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Submit<mat-icon fontIcon="done"></mat-icon></button>
   </p>
 </form>
@@ -35,6 +45,13 @@
       Your Name: {{userPreference['userName']}}<br>
       Your Meal Choice: {{userPreference['mealChoice']}}<br>
       Not Spicy: {{userPreference['notSpicy']}}<br>
+      Portion Size: {{userPreference.portionSize}},
+      @switch (userPreference.portionSize) {
+        @case(PortionSize.SMALL) { Small }
+        @case(PortionSize.MEDIUM) { Medium }
+        @case(PortionSize.LARGE) { Large }
+      }
+      <br>
       Input is valid: {{myForm.valid}}
     </p>
   </mat-card-content>
